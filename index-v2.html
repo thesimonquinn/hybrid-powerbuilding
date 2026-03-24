@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hybrid Powerbuilding | Simon Quinn</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black:       #0a0a0a;
+  --gold:        #dfc687;
+  --gold-dark:   #c9a84c;
+  --cream:       #f5f2eb;
+  --text-dark:   #e0ddd6;
+  --text-light:  #1a1a1a;
+  --muted-dark:  #a09a8e;
+  --muted-light: #6b6560;
+  --bd-dark:     rgba(223,198,135,0.12);
+  --bd-light:    rgba(26,26,26,0.10);
+  --max-w:       640px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--black);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.s-dark  { background: var(--black); color: var(--text-dark); }
+.s-light { background: var(--cream); color: var(--text-light); }
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 100px 24px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.20em;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: clamp(44px, 9vw, 68px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: 28px;
+}
+
+h2 {
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin-bottom: 24px;
+}
+
+.s-dark  h2 { color: var(--text-dark); }
+.s-light h2 { color: var(--text-light); }
+
+p {
+  font-size: 17px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+p:last-child { margin-bottom: 0; }
+.s-dark  p { color: var(--muted-dark); }
+.s-light p { color: var(--muted-light); }
+
+.btn-gold {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.18s;
+}
+.btn-gold:hover { background: var(--gold-dark); }
+
+.btn-black {
+  display: inline-block;
+  background: var(--text-light);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background 0.18s;
+}
+.btn-black:hover { background: #2c2c2c; }
+
+.cta-note { margin-top: 14px; font-size: 13px; color: var(--muted-dark); }
+
+/* HERO */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 120px 24px 96px;
+}
+.hero-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.20em;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.hero-rule { width: 32px; height: 2px; background: var(--gold); margin-bottom: 32px; }
+.hero-sub { font-size: 18px; color: var(--muted-dark); line-height: 1.72; margin-bottom: 44px; max-width: 500px; }
+
+/* Qualifier lists */
+.q-list { list-style: none; margin-top: 32px; }
+.q-list li {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--bd-dark);
+}
+.q-list li:first-child { border-top: 1px solid var(--bd-dark); }
+.s-light .q-list li { border-bottom-color: var(--bd-light); color: var(--muted-light); }
+.s-light .q-list li:first-child { border-top-color: var(--bd-light); }
+.s-dark  .q-list li { color: var(--muted-dark); }
+.q-marker { color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.s-light .q-marker { color: var(--gold-dark); }
+.qualifier-note { margin-top: 28px; font-size: 15px !important; font-style: italic; color: var(--muted-dark) !important; }
+
+/* Placeholders */
+.ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+@media (max-width: 480px) { .ph-grid { grid-template-columns: 1fr; } }
+.ph-box {
+  border: 2px dashed var(--bd-light);
+  border-radius: 10px;
+  padding: 44px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 160px;
+  text-align: center;
+}
+.s-dark .ph-box { border-color: var(--bd-dark); }
+.ph-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted-light); }
+.s-dark .ph-label { color: var(--muted-dark); }
+.ph-sub { font-size: 12px; color: var(--muted-light); margin: 0 !important; }
+.s-dark .ph-sub { color: var(--muted-dark); }
+
+/* Steps */
+.steps { margin-top: 40px; }
+.step { display: flex; gap: 28px; padding: 32px 0; border-bottom: 1px solid var(--bd-dark); }
+.step:first-child { border-top: 1px solid var(--bd-dark); }
+.step-num { font-size: 34px; font-weight: 900; color: var(--gold); letter-spacing: -0.04em; line-height: 1; flex-shrink: 0; width: 44px; margin-top: 3px; }
+.step-content h3 { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; letter-spacing: -0.01em; }
+.step-content p { font-size: 15px; color: var(--muted-dark); margin: 0; line-height: 1.68; }
+
+/* Schedule */
+.sched-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+@media (max-width: 480px) { .sched-wrap { grid-template-columns: 1fr; } }
+.sched-card { border: 1px solid var(--bd-light); border-radius: 12px; overflow: hidden; }
+.sched-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--bd-light); }
+.sched-head h3 { font-size: 14px; font-weight: 700; color: var(--text-light); margin-bottom: 3px; }
+.sched-head p { font-size: 12px; color: var(--muted-light); margin: 0; }
+.sched-row { display: flex; align-items: center; gap: 12px; padding: 10px 20px; border-bottom: 1px solid var(--bd-light); }
+.sched-row:last-child { border-bottom: none; }
+.sched-day { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-light); width: 28px; flex-shrink: 0; }
+.sched-focus { font-size: 13px; font-weight: 500; color: var(--text-light); line-height: 1.35; }
+.sched-focus.rest     { color: var(--muted-light); font-weight: 400; }
+.sched-focus.optional { color: var(--muted-light); font-style: italic; font-size: 12px; font-weight: 400; }
+.sched-note { margin-top: 20px; font-size: 14px; color: var(--muted-light) !important; line-height: 1.65; }
+
+/* Stats */
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--bd-dark); border-radius: 12px; overflow: hidden; margin-top: 36px; }
+@media (max-width: 460px) {
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(2) { border-right: none !important; }
+  .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--bd-dark); }
+}
+.stat { padding: 24px 12px; text-align: center; border-right: 1px solid var(--bd-dark); }
+.stat:last-child { border-right: none; }
+.stat-value { font-size: 24px; font-weight: 900; color: var(--gold); letter-spacing: -0.02em; line-height: 1; margin-bottom: 7px; }
+.stat-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-dark); line-height: 1.35; }
+
+/* Feature list */
+.feat-list { list-style: none; margin-top: 32px; }
+.feat-list li { display: flex; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--bd-light); }
+.feat-list li:first-child { border-top: 1px solid var(--bd-light); }
+.feat-dash { color: var(--gold-dark); font-weight: 700; font-size: 16px; flex-shrink: 0; margin-top: 2px; line-height: 1.5; }
+.feat-text strong { display: block; font-size: 15px; font-weight: 700; color: var(--text-light); margin-bottom: 3px; }
+.feat-text span { font-size: 14px; color: var(--muted-light); line-height: 1.65; }
+
+/* Pricing */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; align-items: start; }
+@media (max-width: 580px) { .pricing-grid { grid-template-columns: 1fr; gap: 16px; } }
+.price-card { border: 1px solid var(--bd-light); border-radius: 12px; padding: 28px 22px 32px; display: flex; flex-direction: column; position: relative; background: #fff; }
+.price-card.featured { border: 2px solid var(--gold); box-shadow: 0 0 0 4px rgba(223,198,135,0.08); }
+.price-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--black); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+.price-tier { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted-light); margin-bottom: 14px; }
+.price-card.featured .price-tier { color: var(--gold-dark); }
+.price-amount { font-size: 36px; font-weight: 900; color: var(--text-light); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+.price-amount span { font-size: 15px; font-weight: 500; color: var(--muted-light); letter-spacing: 0; }
+.price-save { font-size: 12px; font-weight: 700; color: var(--gold-dark); margin-bottom: 4px; min-height: 18px; line-height: 1.5; }
+.price-billing { font-size: 13px; color: var(--muted-light) !important; line-height: 1.55; margin-bottom: 24px; flex-grow: 1; }
+
+/* FAQ */
+.faq { margin-top: 36px; }
+details { border-bottom: 1px solid var(--bd-dark); }
+details:first-of-type { border-top: 1px solid var(--bd-dark); }
+summary { list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; cursor: pointer; font-size: 16px; font-weight: 600; color: var(--text-dark); gap: 16px; user-select: none; -webkit-tap-highlight-color: transparent; }
+summary::-webkit-details-marker { display: none; }
+.faq-icon { color: var(--gold); font-size: 20px; font-weight: 300; flex-shrink: 0; line-height: 1; transition: transform 0.2s; }
+details[open] .faq-icon { transform: rotate(45deg); }
+.faq-ans { padding: 0 0 20px; font-size: 15px; color: var(--muted-dark) !important; line-height: 1.72; margin: 0 !important; }
+
+/* Footer */
+.footer-inner { max-width: var(--max-w); margin: 0 auto; padding: 72px 24px 80px; text-align: center; }
+.footer-brand { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted-light); margin-top: 40px; }
+.footer-links { display: flex; gap: 28px; justify-content: center; margin-top: 16px; }
+.footer-links a { font-size: 13px; color: var(--muted-light); text-decoration: none; transition: color 0.18s; }
+.footer-links a:hover { color: var(--text-light); }
+
+.div-d { height: 1px; background: rgba(223,198,135,0.07); }
+.div-l { height: 1px; background: rgba(26,26,26,0.07); }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO — dark -->
+<section class="s-dark hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Hybrid Powerbuilding by Simon Quinn</div>
+    <div class="hero-rule"></div>
+    <h1>Get Strong.<br>Look Strong.</h1>
+    <p class="hero-sub">A weekly strength, hypertrophy, and athletic conditioning program &#8212; delivered through an app. New programming every week. 3-day and 4-day options.</p>
+    <div>
+      <a href="#pricing" class="btn-gold">Start Training</a>
+      <p class="cta-note">$12.50/week. Cancel anytime.</p>
+    </div>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 2. MAIN OFFER — light -->
+<section class="s-light">
+  <div class="section-inner">
+    <div class="section-label">The Program</div>
+    <h2>Strength. Hypertrophy. Athletic conditioning. One program.</h2>
+    <p>Most programs make you pick. Get strong but move like a fridge. Build muscle but gas out on a flight of stairs. Do conditioning but never actually get stronger.</p>
+    <p>Hybrid Powerbuilding puts all three together. Every week you get a new training plan built on progressive overload &#8212; designed to make your lifts go up, your body look like it trains, and your engine match your strength.</p>
+    <p>You pick 3 days or 4 days. You open the app. You train.</p>
+  </div>
+</section>
+
+<div class="div-l"></div>
+
+<!-- 3. WHO IT'S FOR — dark -->
+<section class="s-dark">
+  <div class="section-inner">
+    <div class="section-label">Who This Is For</div>
+    <h2>You already know how to train. You just want a better plan.</h2>
+    <ul class="q-list">
+      <li><span class="q-marker">&#8594;</span>You want to squat, bench, and deadlift heavier without becoming slow and stiff</li>
+      <li><span class="q-marker">&#8594;</span>You want to build muscle that looks like it can do something</li>
+      <li><span class="q-marker">&#8594;</span>You are done writing your own programming and second-guessing every set and rep</li>
+      <li><span class="q-marker">&#8594;</span>You want conditioning that makes you better &#8212; not just tired</li>
+      <li><span class="q-marker">&#8594;</span>You have access to a gym with barbells and dumbbells</li>
+    </ul>
+    <p class="qualifier-note">If you have never touched a barbell, this is not the right fit. This program is built for people who have been training and are ready to train with more structure and purpose.</p>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 4. TESTIMONIALS — light (placeholders) -->
+<section class="s-light">
+  <div class="section-inner">
+    <div class="section-label">Results</div>
+    <h2>What people are saying.</h2>
+    <div class="ph-grid">
+      <div class="ph-box"><div class="ph-label">Testimonial</div><p class="ph-sub">Screenshot or quote goes here</p></div>
+      <div class="ph-box"><div class="ph-label">Testimonial</div><p class="ph-sub">Screenshot or quote goes here</p></div>
+      <div class="ph-box"><div class="ph-label">Testimonial</div><p class="ph-sub">Screenshot or quote goes here</p></div>
+      <div class="ph-box"><div class="ph-label">Testimonial</div><p class="ph-sub">Screenshot or quote goes here</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="div-l"></div>
+
+<!-- 5. PAIN POINTS — dark -->
+<section class="s-dark">
+  <div class="section-inner">
+    <div class="section-label">The Problem</div>
+    <h2>You are doing a lot of work for average results.</h2>
+    <p>You have been in the gym for years. You train hard. But you are running someone else&#8217;s cookie-cutter plan &#8212; or worse, making it up as you go.</p>
+    <p>Some weeks you feel like you are progressing. Other weeks you are sore in the wrong places, skipping conditioning because you do not feel like it, and wondering if you are actually getting stronger or just going through the motions.</p>
+    <p>You do not need to work harder. You need programming that connects every session to the one before it and the one after it.</p>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 6. BENEFITS UNLOCKED — light -->
+<section class="s-light">
+  <div class="section-inner">
+    <div class="section-label">What Changes</div>
+    <h2>After 12 weeks of Hybrid Powerbuilding.</h2>
+    <ul class="q-list">
+      <li><span class="q-marker">&#8594;</span>Your squat, bench, and deadlift numbers climb &#8212; week over week, not just some weeks</li>
+      <li><span class="q-marker">&#8594;</span>You see definition and size in the mirror that matches the weight on the bar</li>
+      <li><span class="q-marker">&#8594;</span>You finish a set of stairs, a sprint, or a pickup game without feeling like your lungs are going to collapse</li>
+      <li><span class="q-marker">&#8594;</span>You stop guessing what to do. You open the app and the decision is made for you</li>
+      <li><span class="q-marker">&#8594;</span>Training becomes the best part of your day instead of something you have to figure out</li>
+    </ul>
+  </div>
+</section>
+
+<div class="div-l"></div>
+
+<!-- 7. HOW IT WORKS — dark -->
+<section class="s-dark">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2>Three steps. No guesswork.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Sign up and download the app.</h3>
+          <p>You get instant access to your first week of programming &#8212; either the 3-day or 4-day plan.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Follow the program.</h3>
+          <p>Every session has your exercises, sets, reps, and rest periods. Video demos show you exactly how each movement should look. Log your weights and track progress in the app.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Come back next week.</h3>
+          <p>New programming drops every week. It builds on what you did the week before. Progressive overload is baked in &#8212; you just show up and execute.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 8. SNEAK PEEK — light -->
+<section class="s-light">
+  <div class="section-inner">
+    <div class="section-label">Your Week</div>
+    <h2>Pick your split.</h2>
+    <div class="sched-wrap">
+      <div class="sched-card">
+        <div class="sched-head"><h3>4-Day Option</h3><p>Upper / lower split</p></div>
+        <div class="sched-row"><span class="sched-day">Mon</span><span class="sched-focus">Upper Body + Optional Cardio</span></div>
+        <div class="sched-row"><span class="sched-day">Tue</span><span class="sched-focus">Lower Body</span></div>
+        <div class="sched-row"><span class="sched-day">Wed</span><span class="sched-focus optional">Optional Cardio</span></div>
+        <div class="sched-row"><span class="sched-day">Thu</span><span class="sched-focus">Upper Body</span></div>
+        <div class="sched-row"><span class="sched-day">Fri</span><span class="sched-focus">Lower Body</span></div>
+        <div class="sched-row"><span class="sched-day">Sat</span><span class="sched-focus optional">Optional Cardio</span></div>
+        <div class="sched-row"><span class="sched-day">Sun</span><span class="sched-focus rest">Rest</span></div>
+      </div>
+      <div class="sched-card">
+        <div class="sched-head"><h3>3-Day Option</h3><p>Full body split</p></div>
+        <div class="sched-row"><span class="sched-day">Mon</span><span class="sched-focus">Full Body</span></div>
+        <div class="sched-row"><span class="sched-day">Tue</span><span class="sched-focus optional">Optional Cardio</span></div>
+        <div class="sched-row"><span class="sched-day">Wed</span><span class="sched-focus">Full Body</span></div>
+        <div class="sched-row"><span class="sched-day">Thu</span><span class="sched-focus optional">Optional Cardio</span></div>
+        <div class="sched-row"><span class="sched-day">Fri</span><span class="sched-focus">Full Body</span></div>
+        <div class="sched-row"><span class="sched-day">Sat</span><span class="sched-focus optional">Optional Cardio</span></div>
+        <div class="sched-row"><span class="sched-day">Sun</span><span class="sched-focus rest">Rest</span></div>
+      </div>
+    </div>
+    <p class="sched-note">Both options include the same principles &#8212; progressive overload, compound movements, hypertrophy work, and athletic conditioning built in.</p>
+  </div>
+</section>
+
+<div class="div-l"></div>
+
+<!-- 9. CREDIBILITY — dark -->
+<section class="s-dark">
+  <div class="section-inner">
+    <div class="section-label">Your Coach</div>
+    <h2>Simon Quinn</h2>
+    <p>2nd place at the IPF World Championships. Sub-6 minute mile &#8212; as a powerlifter.</p>
+    <p>Built training programs at Hybrid Performance Method alongside the coaches of Eddie Hall and Noah Ohlsen. Featured in Muscle and Fitness. Named Athlete of the Year at Concordia University out of 66,535 students.</p>
+    <p>Has written programs for everyone from first-time competitors to CEOs running $100M+ companies. This program is how I train.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-value">2nd</div><div class="stat-label">IPF Worlds</div></div>
+      <div class="stat"><div class="stat-value">Sub-6</div><div class="stat-label">Mile Time</div></div>
+      <div class="stat"><div class="stat-value">66,535</div><div class="stat-label">Athlete of Year</div></div>
+      <div class="stat"><div class="stat-value">6+</div><div class="stat-label">Years Coaching</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 10. WHAT YOU GET — light -->
+<section class="s-light">
+  <div class="section-inner">
+    <div class="section-label">Everything Included</div>
+    <h2>What is inside.</h2>
+    <ul class="feat-list">
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>Weekly programming</strong><span>New plan every week. Progressive overload is built in. You just follow it.</span></div></li>
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>3-day or 4-day option</strong><span>Pick what fits your schedule. Both get results.</span></div></li>
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>Exercise library</strong><span>Video demos with setup cues, execution notes, and substitutes for every movement.</span></div></li>
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>Progress tracking</strong><span>Log weights, track lifts, see personal records over time.</span></div></li>
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>Nutrition tracking</strong><span>Track your food alongside your training in the same app.</span></div></li>
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>Community</strong><span>Train alongside other people running the same program. Share wins. Ask questions.</span></div></li>
+      <li><div class="feat-dash">&#8212;</div><div class="feat-text"><strong>Coach updates</strong><span>My training, my takes on nutrition and programming, and breakdowns of what I am learning. You are not just getting a program. You are getting a coach who is in the gym doing the same work.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<div class="div-l"></div>
+
+<!-- 11. BONUSES — dark (placeholders) -->
+<section class="s-dark">
+  <div class="section-inner">
+    <div class="section-label">Bonuses</div>
+    <h2>Everything else you get on day one.</h2>
+    <div class="ph-grid">
+      <div class="ph-box"><div class="ph-label">Bonus 1</div><p class="ph-sub">Coming soon</p></div>
+      <div class="ph-box"><div class="ph-label">Bonus 2</div><p class="ph-sub">Coming soon</p></div>
+      <div class="ph-box"><div class="ph-label">Bonus 3</div><p class="ph-sub">Coming soon</p></div>
+      <div class="ph-box"><div class="ph-label">Bonus 4</div><p class="ph-sub">Coming soon</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 12. PRICING — light -->
+<section class="s-light" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Get Started</div>
+    <h2>One program. Your pace. Your price.</h2>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Weekly</div>
+        <div class="price-amount">$12.50<span>/wk</span></div>
+        <div class="price-save">&nbsp;</div>
+        <p class="price-billing">Cancel anytime. No commitment.</p>
+        <a href="#" class="btn-black">Start Training</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">3 Months</div>
+        <div class="price-amount">$10<span>/wk</span></div>
+        <div class="price-save">Save 20%</div>
+        <p class="price-billing">Billed as $130 every 3 months.</p>
+        <a href="#" class="btn-black">Start Training</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">12 Months</div>
+        <div class="price-amount">$7.50<span>/wk</span></div>
+        <div class="price-save">Save 40%</div>
+        <p class="price-billing">Billed as $390/year.</p>
+        <a href="#" class="btn-black">Start Training</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:36px;font-size:15px;">Want 1-on-1 coaching with custom programming, nutrition, and weekly check-ins?<br><a href="mailto:simonchangfitness@gmail.com" style="color:var(--text-light);font-weight:600;text-decoration:underline;">Apply for 1:1 coaching.</a></p>
+  </div>
+</section>
+
+<div class="div-l"></div>
+
+<!-- 13. FAQ — dark -->
+<section class="s-dark">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2>Common questions.</h2>
+    <div class="faq">
+      <details>
+        <summary>I can only train 3 days a week. Will this work?<span class="faq-icon">+</span></summary>
+        <p class="faq-ans">Yes. There is a 3-day full body option designed for exactly that.</p>
+      </details>
+      <details>
+        <summary>Do I need any special equipment?<span class="faq-icon">+</span></summary>
+        <p class="faq-ans">A commercial gym with barbells, dumbbells, cables, and basic machines. No specialty equipment.</p>
+      </details>
+      <details>
+        <summary>How long are the workouts?<span class="faq-icon">+</span></summary>
+        <p class="faq-ans">45 to 75 minutes depending on the day.</p>
+      </details>
+      <details>
+        <summary>What if I am a beginner?<span class="faq-icon">+</span></summary>
+        <p class="faq-ans">This program is built for people with training experience. If you have been lifting consistently for at least 6 months, you will be fine.</p>
+      </details>
+      <details>
+        <summary>Can I do this alongside another sport?<span class="faq-icon">+</span></summary>
+        <p class="faq-ans">Yes. The 3-day option works well alongside other training. The 4-day option is more demanding but manageable with proper recovery.</p>
+      </details>
+      <details>
+        <summary>When does new programming drop?<span class="faq-icon">+</span></summary>
+        <p class="faq-ans">Every week. It builds on the previous week so your progress compounds over time.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<div class="div-d"></div>
+
+<!-- 14. REFUND POLICY + FOOTER — light -->
+<section class="s-light">
+  <div class="footer-inner">
+    <div class="section-label" style="text-align:center;margin-bottom:16px;">Refund Policy</div>
+    <p style="max-width:440px;margin:0 auto;text-align:center;font-size:15px;line-height:1.75;color:var(--muted-light);">Cancel anytime on the weekly plan. 3-month and 12-month plans are non-refundable but you keep access for the full duration.</p>
+    <div class="footer-brand">Hybrid Powerbuilding by Simon Quinn</div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/thesimonquinn/" target="_blank">Instagram</a>
+      <a href="mailto:simonchangfitness@gmail.com">Contact</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
